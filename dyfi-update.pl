@@ -80,9 +80,6 @@
 #
 # Thu Feb 25 2016 - latenssi at gmail dot com
 #	- Docker compatible version 2.0.0
-#
-# Fri March 26 2016 - latenssi at gmail dot com
-#	- Get system hostname if no DYFI_HOST env variables was set
 
 #
 # PLEASE - if you make modifications to this script, and redistribute the
@@ -97,7 +94,6 @@ require 5.002;
 use Socket;
 use strict;
 use Fcntl qw(:flock);
-use Sys::Hostname;
 
 my ($debug, $log, $pidfile, $cfgfile,
 	$update_host, $update_uri, $update_port,
@@ -138,10 +134,6 @@ $username = $ENV{'DYFI_USERNAME'};
 $password = $ENV{'DYFI_PASSWORD'};
 $do_release = $ENV{'DYFI_RELEASE'};
 push @hosts, $ENV{'DYFI_HOST'};
-
-if (!@hosts) {
-	push @hosts, hostname;
-}
 
 $pidfile = '/var/run/dyfi-update.pid';
 
