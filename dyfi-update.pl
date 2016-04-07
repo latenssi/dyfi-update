@@ -133,7 +133,7 @@ my($version) = "v2.0.0";
 $username = $ENV{'DYFI_USERNAME'};
 $password = $ENV{'DYFI_PASSWORD'};
 $do_release = $ENV{'DYFI_RELEASE'};
-push @hosts, $ENV{'DYFI_HOST'};
+push @hosts, split(/,/, $ENV{'DYFI_HOST'});
 
 $pidfile = '/var/run/dyfi-update.pid';
 
